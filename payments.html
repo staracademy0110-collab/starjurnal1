@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>To'lov Jurnali — Star Academy</title>
+  <meta name="description" content="O'quvchilar oyma-oy to'lovlarini kuzatish uchun zamonaviy jurnal." />
+  <link rel="stylesheet" href="payments.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet" />
+</head>
+<body>
+  <div id="app">
+    <!-- Login -->
+    <section id="login-view" class="view centered">
+      <div class="card login-card">
+        <div class="app-logo"><i class="fa-solid fa-graduation-cap"></i></div>
+        <h1 class="app-title">To'lov Jurnali</h1>
+        <p class="muted">Kirish uchun parol kiriting</p>
+        <div class="form-group">
+          <label for="password">Parol</label>
+          <input id="password" type="password" placeholder="Parol" autocomplete="current-password" />
+        </div>
+        <button id="loginBtn" class="btn primary full">Kirish</button>
+      </div>
+    </section>
+
+    <!-- Main -->
+    <section id="main-view" class="view hidden">
+      <header class="topbar">
+        <div class="left">
+          <div class="brand">
+            <i class="fa-solid fa-graduation-cap"></i>
+            <span>Star Academy — To'lov Jurnali</span>
+          </div>
+        </div>
+        <div class="right">
+          <div class="theme">
+            <label class="small muted">Rang</label>
+            <input id="themePicker" type="color" />
+          </div>
+          <button id="settingsBtn" class="btn ghost"><i class="fa-solid fa-gear"></i></button>
+          <button id="logoutBtn" class="btn danger"><i class="fa-solid fa-right-from-bracket"></i> Chiqish</button>
+        </div>
+      </header>
+
+      <div class="container">
+        <div class="toolbar">
+          <div class="search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input id="searchInput" type="text" placeholder="Ism bo'yicha qidirish (faqat ko'rish uchun)" />
+          </div>
+          <div class="legend">
+            <span class="badge due">Joriy oy</span>
+            <span class="badge overdue">Kechiktirilgan</span>
+            <span class="badge paid">To'langan</span>
+          </div>
+        </div>
+
+        <!-- Sections top tabs -->
+        <div class="sections-nav" role="tablist" aria-label="Bo'limlar">
+          <button class="sec-tab active" role="tab" aria-selected="true" data-target="#section-ielts">IELTS</button>
+          <button class="sec-tab" role="tab" aria-selected="false" data-target="#section-cefr">CEFR</button>
+          <button class="sec-tab" role="tab" aria-selected="false" data-target="#section-b1b2">B1-B2</button>
+          <button class="sec-tab" role="tab" aria-selected="false" data-target="#section-a1a2">A1-A2</button>
+        </div>
+
+        <div class="section" id="section-ielts">
+          <h3 class="section-title">IELTS — 400 000 so'm</h3>
+          <div class="table-wrap">
+          <table class="table" id="studentsTable" aria-label="O'quvchilar to'lov jurnali (IELTS)">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>F.I.Sh</th>
+                <th>To'lov oyi</th>
+                <th>Holat</th>
+                <th>O'qituvchi</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Static example row kept by JS (data-static) -->
+                <td>1</td>
+                <td>Muxtarov Shaxriyor</td>
+                <td>Oktyabr</td>
+                <td><span class="status overdue">Kechiktirilgan</span></td>
+                <td><button class="cell-teacher" data-id="static">Mavlon</button></td>
+              </tr>
+              <!-- rows injected by JS -->
+            </tbody>
+          </table>
+          <div id="emptyState" class="empty hidden">
+            <i class="fa-regular fa-folder-open"></i>
+            <p>Ma'lumot topilmadi</p>
+          </div>
+          </div>
+        </div>
+
+        <!-- CEFR section -->
+        <div class="section hidden" id="section-cefr">
+          <h3 class="section-title">CEFR — 400 000 so'm</h3>
+          <div class="table-wrap">
+            <table class="table" aria-label="CEFR to'lov jurnali">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>F.I.Sh</th>
+                  <th>To'lov oyi</th>
+                  <th>Holat</th>
+                  <th>O'qituvchi</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr data-static="1" data-name="Maxaddinov Shuxrat" data-teacher="Mavluda" data-month="Oktyabr" data-status="due">
+                  <td>1</td>
+                  <td>Maxaddinov Shuxrat</td>
+                  <td>Oktyabr</td>
+                  <td><span class="status due">Joriy oy</span></td>
+                  <td><button class="cell-teacher" data-id="static">Mavluda</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- B1-B2 section -->
+        <div class="section hidden" id="section-b1b2">
+          <h3 class="section-title">B1-B2 — 300 000 so'm</h3>
+          <div class="table-wrap">
+            <table class="table" aria-label="B1-B2 to'lov jurnali">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>F.I.Sh</th>
+                  <th>To'lov oyi</th>
+                  <th>Holat</th>
+                  <th>O'qituvchi</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr data-static="1" data-name="Ergashev Sarvar" data-teacher="Mavluda" data-month="Oktyabr" data-status="overdue">
+                  <td>1</td>
+                  <td>Ergashev Sarvar</td>
+                  <td>Oktyabr</td>
+                  <td><span class="status overdue">Kechiktirilgan</span></td>
+                  <td><button class="cell-teacher" data-id="static">Mavluda</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- A1-A2 section -->
+        <div class="section hidden" id="section-a1a2">
+          <h3 class="section-title">A1-A2 — 250 000 so'm</h3>
+          <div class="table-wrap">
+            <table class="table" aria-label="A1-A2 to'lov jurnali">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>F.I.Sh</th>
+                  <th>To'lov oyi</th>
+                  <th>Holat</th>
+                  <th>O'qituvchi</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr data-static="1" data-name="Ali Karimov" data-teacher="Gulnoza" data-month="Oktyabr" data-status="due">
+                  <td>1</td>
+                  <td>Ali Karimov</td>
+                  <td>Oktyabr</td>
+                  <td><span class="status due">Joriy oy</span></td>
+                  <td><button class="cell-teacher" data-id="static">Gulnoza</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Student modal -->
+  <div id="studentModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="studentTitle">
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="studentTitle">O'quvchi</h3>
+        <button class="icon-btn" data-close aria-label="Yopish"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="kv">
+          <div><span class="key">F.I.Sh:</span> <span class="val" id="mName"></span></div>
+          <div><span class="key">O'qituvchi:</span> <span class="val" id="mTeacher"></span></div>
+          <div><span class="key">Joriy oy:</span> <span class="val" id="mMonth"></span></div>
+          <div><span class="key">Holat:</span> <span class="val" id="mStatus"></span></div>
+        </div>
+        <div class="history">
+          <h4>Tarix</h4>
+          <ul id="mHistory"></ul>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="confirmBtn" class="btn primary"><i class="fa-solid fa-check"></i> To'lovni tasdiqlash</button>
+        <button class="btn ghost" data-close>Bekor qilish</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Settings modal -->
+  <div id="settingsModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="settingsTitle">Sozlamalar</h3>
+        <button class="icon-btn" data-close aria-label="Yopish"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="newPassword">Admin paroli</label>
+            <input id="newPassword" type="password" placeholder="Yangi parol" />
+            <p class="muted small">Agar o'zgartirmoqchi bo'lsangiz kiriting, aks holda bo'sh qoldiring.</p>
+          </div>
+          <div class="form-group">
+            <label for="seedBtn" class="block">Demo ma'lumotlar</label>
+            <button id="seedBtn" class="btn ghost"><i class="fa-solid fa-database"></i> Namuna o'quvchilarni yuklash</button>
+            <p class="muted small">GitHub Pages uchun saqlash localStorage orqali ishlaydi.</p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="saveSettingsBtn" class="btn primary">Saqlash</button>
+        <button class="btn ghost" data-close>Yopish</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="payments.js"></script>
+</body>
+</html>
